@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app>
-  <head>
+<head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>#}
+    {#<script type="text/javascript" src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.js"></script>
+#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/static/ods-widgets.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://opendatasoft.github.io/ods-widgets/dist/ods-widgets.css">
     <title>Flask-Triangle - Tutorial</title>
-  </head>
-  <body>
-    <label>Name:</label>
-    <input type="text" data-ng-model="yourName" placeholder="Enter a name here">
-    <hr>
-    <h1>Hello {{yourName|angular}}!</h1>
-  </body>
+</head>
+<body>
+<label>Name:</label>
+<input type="text" data-ng-model="yourName" placeholder="Enter a name here">
+<hr>
+<h1>Hello {{ yourName|angular }}!</h1>
+
+<div class="container-fluid" ng-app="ods-widgets">
+
+    <ods-dataset-context context="raleighassult" raleighassult-domain="playground"
+                         raleighassult-dataset="raleigh-assault" raleighassult-apikey="10cbd38a4dbbbafcf7a80625576348a41952ae7fa04de1bcd3a133f6">
+        <ods-timerange context="chicagoincidents" default-from="2009-01-01" default-to="2014-12-09"></ods-timerange>#}
+        <label><input type="checkbox" ng-model="heatmapMode"> Show heatmap</label>
+
+        <div class="row-fluid">
+            {#<div class="span4">
+                <ods-facets context="chicagoincidents"></ods-facets>
+            </div>#}
+            <div class="span8">
+                <ods-map>
+                    <ods-map-layer context="raleighassult"></ods-map-layer>
+                    {#<ods-map-layer context="chicagoincidents" display="heatmap" show-if="heatmapMode"></ods-map-layer>#}
+                </ods-map>
+            </div>
+        </div>
+    </ods-dataset-context>
+
+</div>
+
+</body>
 </html>
